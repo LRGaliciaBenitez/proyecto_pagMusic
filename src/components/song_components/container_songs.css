@@ -1,0 +1,36 @@
+.mainContainerSongs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.mainContainerSongs .titulo__playlist {
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    width: 100%;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.containerSongs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    box-sizing: border-box;
+}
+
+
+@media (min-width: 768px) {
+    .containerSongs {
+        width: 80%;
+    }
+
+    .mainContainerSongs .titulo__playlist {
+        width: 80%;
+    }
+}
