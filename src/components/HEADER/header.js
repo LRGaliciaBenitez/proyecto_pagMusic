@@ -1,32 +1,39 @@
-import React, {Component} from "react";
+import React from "react";
 import "./header.css";
 
-class Header extends Component {
+const Header = ( { setBusqueda, setMostrarResultados, busqueda } ) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            
+    const handleKeyEnter = (e) => {
+        if(e.key === "Enter" && busqueda.trim() !== "") {
+            setMostrarResultados(true)
         }
-    }
-
-
-    render() {
-        return (
-            <header>
-                <h1 className="header__h1">Tuni Music</h1>
-                <div className="header__container_buscador">
-                    <input type="text" name="inputSearch" id="inputSearch"></input>
-                    <i class="bi bi-search"></i>
-                </div>
-                <div className="header__container_icons">
-                    <i class="bi bi-bell"></i>
-                    <i class="bi bi-gear-fill"></i>
-                    <i class="bi bi-person-circle"></i>
-                </div>
-            </header>
-        )
-    }
+    };
+    
+    return (
+        <header>
+            <h1 className="header__h1">Tuni Music</h1>
+            <div className="header__container_buscador">
+                <input 
+                type="text" 
+                name="inputSearch" 
+                id="inputSearch"
+                onChange={(e) => setBusqueda(e.target.value)}
+                onKeyDown={handleKeyEnter}
+                ></input>
+                <i 
+                className="bi bi-search"
+                onClick={() => {
+                    if(busqueda.trim() !== "") setMostrarResultados(true);
+                }}
+                ></i>
+            </div>
+            <div className="header__container_icons">
+                <i class="bi bi-bell"></i>
+                <i class="bi bi-gear-fill"></i>
+                <i class="bi bi-person-circle"></i>
+            </div>
+        </header>
+    )
 }
 
 export default Header;

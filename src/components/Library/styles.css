@@ -1,0 +1,36 @@
+.containerLibrary {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.containerLibrary h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    width: 100%;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.containerLibrary__songs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    gap: 20px;
+    justify-items: center;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+
+    .containerLibrary h2 {
+        width: 80%;
+    }
+
+    .containerLibrary__songs {
+        width: 80%;
+    }
+}
