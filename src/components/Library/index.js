@@ -12,11 +12,11 @@ const Library = ( {playlist} ) => {
                 { playlist.length > 0 ? (
                    playlist.map(c => (
                         <Song 
-                        imagen={Imagen}
-                        name={c.name}
-                        key={c.key}
-                        artista={c.artista}
-                        duracion={c.duracion}
+                        imagen={c.strAlbumThumb || Imagen}
+                        name={c.strAlbum}
+                        key={c.idAlbum}
+                        artista={c.strArtist}
+                        duracion={c.duracion  || null}
                         />
                 )) 
             ): (

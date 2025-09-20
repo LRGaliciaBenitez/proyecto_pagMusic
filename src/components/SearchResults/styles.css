@@ -1,8 +1,9 @@
 .SearchResults {
     width: 100%;
     position: absolute;
-    left: -100%;
-    transition: left 0.3s ease-in-out;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
     background-color: white;
     min-height: 100vh;
     z-index: 1000;
@@ -15,7 +16,13 @@
 }
 
 .SearchResults.activo {
-    left: 0;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.SearchResults.oculto {
+    transform: translateX(-100%);
+    opacity: 0;
 }
 
 .SearchResults .bi-x-lg {
@@ -36,7 +43,7 @@
 .SearchResults__container {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     justify-items: center;
     box-sizing: border-box;

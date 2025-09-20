@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./header.css";
 
 const Header = ( { setBusqueda, setMostrarResultados, busqueda } ) => {
@@ -11,7 +12,9 @@ const Header = ( { setBusqueda, setMostrarResultados, busqueda } ) => {
     
     return (
         <header>
-            <h1 className="header__h1">Tuni Music</h1>
+            <Link to="/">
+                <h1 className="header__h1">Tuni Music</h1>
+            </Link>
             <div className="header__container_buscador">
                 <input 
                 type="text" 
