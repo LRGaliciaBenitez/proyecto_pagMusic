@@ -1,34 +1,90 @@
 import React from "react";
-import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
+const ConatinerSong = styled.div`
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #f0f0f0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+`;
+
+const ContainerIMG = styled.img`
+    width: 100%;
+    border-radius: 10px;
+`;
+
+const ContainerResultsDivisor = styled.div`
+    width: 100%;
+    min-height: 140px;
+    margin: 10px 0;
+
+    @media (min-width: 738px) {
+        min-height: 170px;
+    }
+`;
+
+const TextoDescriptivo = styled.p`
+    margin-bottom: 5px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-weight: bold;
+    text-align: center;
+`;
+
+const Boton = styled.button`
+    padding: 8px 16px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+    }
+`;
 
 const SongResults = ( {key, imagen, agregarAlbum, album, setMostrarResultados} ) => {
 
     const navigate = useNavigate();
 
     return (
-        <div className="songResults" key={key}>
-            <img className="songResults__img" src={imagen} alt={album.strAlbum}/>
-            <div className="songResults__divisor">
-                <p className="nombreCancionResults">Álbum: {album.strAlbum}</p>
-                <p className="artistaCancionResults">Artista: {album.strArtist}</p>
-                <p className="duracionCancionResults">Año: {album.intYearReleased}</p>
-                <p>Genero: {album.strStyle}</p>
-            </div>
-            <button 
+        <ConatinerSong key={key}>
+            <ContainerIMG src={imagen} alt={album.strAlbum} />
+            <ContainerResultsDivisor>
+                <TextoDescriptivo>Álbum: {album.strAlbum}</TextoDescriptivo>
+                <TextoDescriptivo>Artista: {album.strArtist}</TextoDescriptivo>
+                <TextoDescriptivo>Año: {album.intYearReleased}</TextoDescriptivo>
+                <TextoDescriptivo>Genero: {album.strStyle}</TextoDescriptivo>
+            </ContainerResultsDivisor>
+            <Boton
             id="btnAddSong" 
             onClick={() => {
                 agregarAlbum(album)
-            }} 
-            >Agregar Álbum</button>
-            <button
+            }}
+            >Agregar Álbum</Boton>
+            <Boton
             onClick={() => {
                 navigate(`/album/${album.idAlbum}`)
                 setMostrarResultados(false)
             }}
-            >Ver Álbum</button>
-        </div>
+            >Ver Álbum</Boton>
+        </ConatinerSong>
     )
 }
 

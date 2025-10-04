@@ -1,6 +1,82 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./header.css";
+import styled from "styled-components";
+
+const HeaderContainer = styled.header`
+    background-color: #1e1e1e;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Enlace = styled(Link)`
+    text-decoration: unset;
+    color: white;
+
+    &:visited {
+        color: white;
+    }
+
+    @media (min-width: 768px) {
+        width: 30%;
+    }
+`;
+
+const H1 = styled.h1`
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+`;
+
+const ContainerSearch = styled.div`
+    display: none;
+
+    @media (min-width: 768px) {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+`;
+
+const InputSearch = styled.input`
+
+    @media (min-width: 768px) {
+        padding: 5px 10px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        width: 200px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 300px;
+    }
+`;
+
+const Icon = styled.i`
+    cursor: pointer;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+
+    @media (min-width: 768px) {
+
+        &:hover {
+            color: #bbb;
+        }
+    }
+`;
+
+const ContainerIcons = styled.div`
+    display: flex;
+    gap: 15px;
+
+    @media (min-width: 768px) {
+        width: 30%;
+        justify-content: flex-end;
+    }
+`;
 
 const Header = ( { setBusqueda, setMostrarResultados, busqueda } ) => {
 
@@ -11,31 +87,31 @@ const Header = ( { setBusqueda, setMostrarResultados, busqueda } ) => {
     };
     
     return (
-        <header>
-            <Link to="/">
-                <h1 className="header__h1">Tuni Music</h1>
-            </Link>
-            <div className="header__container_buscador">
-                <input 
+        <HeaderContainer>
+            <Enlace to="/">
+                <H1>Tuni Music</H1>
+            </Enlace>
+            <ContainerSearch>
+                <InputSearch 
                 type="text" 
                 name="inputSearch" 
                 id="inputSearch"
                 onChange={(e) => setBusqueda(e.target.value)}
                 onKeyDown={handleKeyEnter}
-                ></input>
-                <i 
+                />
+                <Icon
                 className="bi bi-search"
                 onClick={() => {
                     if(busqueda.trim() !== "") setMostrarResultados(true);
                 }}
-                ></i>
-            </div>
-            <div className="header__container_icons">
-                <i class="bi bi-bell"></i>
-                <i class="bi bi-gear-fill"></i>
-                <i class="bi bi-person-circle"></i>
-            </div>
-        </header>
+                ></Icon>
+            </ContainerSearch>
+            <ContainerIcons>
+                <Icon className="bi bi-bell"></Icon>
+                <Icon className="bi bi-gear-fill"></Icon>
+                <Icon className="bi bi-person-circle"></Icon>
+            </ContainerIcons>
+        </HeaderContainer>
     )
 }
 
