@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { addSong } from "../../../redux/libraryActions";
 
 const ConatinerSong = styled.div`
     width: 200px;
@@ -59,12 +61,24 @@ const Boton = styled.button`
     }
 `;
 
-const SongResults = ( {key, imagen, agregarAlbum, album, setMostrarResultados} ) => {
+const SongResults = ( {imagen, album, setMostrarResultados} ) => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const playlist = useSelector(state => state);
+
+    const existe = () => {
+        if (playlist.find(c => c.idAlbum === album.idAlbum)) {
+            alert(`El álbum ${album.strAlbum} ya es parte de tu Library`);
+        } else  {
+            alert(`El álbum ${album.strAlbum} ha sido agregado a tu Library`);
+            dispatch(addSong(album))
+        }
+
+    };
 
     return (
-        <ConatinerSong key={key}>
+        <ConatinerSong>
             <ContainerIMG src={imagen} alt={album.strAlbum} />
             <ContainerResultsDivisor>
                 <TextoDescriptivo>Álbum: {album.strAlbum}</TextoDescriptivo>
@@ -74,9 +88,7 @@ const SongResults = ( {key, imagen, agregarAlbum, album, setMostrarResultados} )
             </ContainerResultsDivisor>
             <Boton
             id="btnAddSong" 
-            onClick={() => {
-                agregarAlbum(album)
-            }}
+            onClick={existe}
             >Agregar Álbum</Boton>
             <Boton
             onClick={() => {

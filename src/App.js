@@ -10,26 +10,26 @@ const App = () => {
 
   const [busqueda, setBusqueda] = useState("");
   const [mostrarResultados, setMostrarResultados] = useState(false);
-  const [playlist, setPlaylist] = useState([]);
+  // const [playlist, setPlaylist] = useState([]);
 
-  const agregarAlbum = (album) => {
-    setPlaylist(prev => {
+  // const agregarAlbum = (album) => {
+  //   setPlaylist(prev => {
     
-      const existe = prev.some(c => c.idAlbum === album.idAlbum);
+  //     const existe = prev.some(c => c.idAlbum === album.idAlbum);
 
-      if (existe) {
-        alert(`La canción ${album.strAlbum} ya es parte de tu Library`);
-        return prev;
-      } else {
-        alert(`La canción ${album.strAlbum} ha sido agregada a tu Library`);
-        return [...prev, album];
-      }
-    });
-  };
+  //     if (existe) {
+  //       alert(`La canción ${album.strAlbum} ya es parte de tu Library`);
+  //       return prev;
+  //     } else {
+  //       alert(`La canción ${album.strAlbum} ha sido agregada a tu Library`);
+  //       return [...prev, album];
+  //     }
+  //   });
+  // };
 
-  useEffect(() => {
-    console.log(`Se axtualizo la biblioteca: ${playlist}`);
-  }, [playlist]);
+  // useEffect(() => {
+  //   console.log(`Se axtualizo la biblioteca: ${playlist}`);
+  // }, [playlist]);
 
   function MainPage() {
     return (
@@ -38,11 +38,9 @@ const App = () => {
         busqueda={busqueda} 
         mostrar={mostrarResultados} 
         setMostrarResultados={setMostrarResultados}
-        agregarAlbum={agregarAlbum}
         />
         <ContainerSongs />
         <Library 
-        playlist={playlist}
         />
       </>
     )
@@ -68,7 +66,7 @@ const App = () => {
               busqueda={busqueda} 
               mostrar={mostrarResultados} 
               setMostrarResultados={setMostrarResultados}
-              agregarAlbum={agregarAlbum}
+              // agregarAlbum={agregarAlbum}
               />
               <ViewAlbum />
             </>

@@ -5,6 +5,8 @@ import App from './App';
 
 import "normalize.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import GlobalStyle from './styles/GlobalStyles';
@@ -12,11 +14,13 @@ import GlobalStyle from './styles/GlobalStyles';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
-    </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );

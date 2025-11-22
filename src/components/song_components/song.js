@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { removeSong } from "../../redux/libraryActions";
 
 const ContainerSong = styled.div`
     width: 200px;
@@ -36,8 +38,26 @@ const TextoDescriptivo = styled.p`
     text-align: center;
 `;
 
+const BotonDelete = styled.button`
+    padding: 8px 16px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: white;
+        color: red;
+        border: 1px solid red;
+    }
+`;
 
-const Song = ({ imagen, name, artista, duracion, key }) => {
+
+const Song = ({ imagen, name, artista, duracion, id}) => {
+
+    const dispatch = useDispatch();
 
     return (
         <ContainerSong>
@@ -47,6 +67,7 @@ const Song = ({ imagen, name, artista, duracion, key }) => {
                 <TextoDescriptivo>Artista: {artista}</TextoDescriptivo>
                 <TextoDescriptivo>Duración: {duracion}</TextoDescriptivo>
             </SongDivisor>
+            <BotonDelete onClick={() => dispatch(removeSong(id))}>Eliminar</BotonDelete>
         </ContainerSong>
     )
 

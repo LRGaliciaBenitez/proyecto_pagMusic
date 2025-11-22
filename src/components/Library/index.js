@@ -2,6 +2,8 @@ import React from "react";
 import Song from "../song_components/song";
 import Imagen from "../../assets/album3.jpg";
 import styled from "styled-components";
+import { useSelector} from "react-redux";
+
 
 const ContainerLibrary = styled.div`
     width: 100%;
@@ -36,7 +38,8 @@ const ContainerSongs = styled.div`
 `;
 
 
-const Library = ( {playlist} ) => {
+const Library = () => {
+    const playlist = useSelector(state => state);
 
     return(
         <ContainerLibrary>
@@ -47,7 +50,7 @@ const Library = ( {playlist} ) => {
                         <Song 
                         imagen={c.strAlbumThumb || Imagen}
                         name={c.strAlbum}
-                        key={c.idAlbum}
+                        id={c.idAlbum}
                         artista={c.strArtist}
                         duracion={c.duracion  || null}
                         />

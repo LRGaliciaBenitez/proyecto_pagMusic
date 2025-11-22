@@ -64,12 +64,12 @@ const TextoError = styled.p`
 
 
 
-const SearchResults = ( { busqueda, mostrar, setMostrarResultados, agregarAlbum } ) => {
+const SearchResults = ( { busqueda, mostrar, setMostrarResultados} ) => {
 
     const { albums,error,carga } = useFetch(busqueda);
 
     const renderInformacion = () => {
-        if(carga) return(<TextoError>Cargando...</TextoError>)
+        if(carga) return( <TextoError>Cargando...</TextoError>)
         if(error) return( <TextoError>Error: ${error.message}</TextoError>)
         if(!albums || albums.length === 0) return( <TextoError>No se encontro ninguna canción o artista</TextoError>)
 
@@ -81,7 +81,6 @@ const SearchResults = ( { busqueda, mostrar, setMostrarResultados, agregarAlbum 
                                 key={c.idAlbum}
                                 album={c}
                                 imagen={c.strAlbumThumb || imagen}
-                                agregarAlbum={agregarAlbum}
                                 setMostrarResultados={setMostrarResultados}
                             />
                     ))   
