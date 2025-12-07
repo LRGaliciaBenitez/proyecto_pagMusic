@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { removeSong } from "../../redux/libraryActions";
+import { removeSong } from "../../redux/librarySlice";
+
 
 const ContainerSong = styled.div`
     width: 200px;

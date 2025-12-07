@@ -1,7 +1,9 @@
 import SongResults from "./SongResults/index";
 import imagen from "../../assets/album4.jpg";
-import useFetch from "../../Hooks/useFetch";
 import styled, { css } from "styled-components";
+import { useEffect } from "react";
+import { fetchAlbums } from "../../redux/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const SearchResultsWrapper = styled.div`
     width: 100%;
@@ -65,25 +67,33 @@ const TextoError = styled.p`
 
 
 const SearchResults = ( { busqueda, mostrar, setMostrarResultados} ) => {
+    
+    const dispatch = useDispatch();
 
-    const { albums,error,carga } = useFetch(busqueda);
+    const { results: albums, loading, error } = useSelector((state) => state.search);
+
+    useEffect(() => {
+        if(busqueda) {
+            dispatch(fetchAlbums(busqueda));
+        }
+    }, [busqueda, dispatch]);
 
     const renderInformacion = () => {
-        if(carga) return( <TextoError>Cargando...</TextoError>)
-        if(error) return( <TextoError>Error: ${error.message}</TextoError>)
-        if(!albums || albums.length === 0) return( <TextoError>No se encontro ninguna canción o artista</TextoError>)
+        if(loading) return( <TextoError>Cargando...</TextoError>);
+        if(error) return( <TextoError>Error: ${error.message}</TextoError>);
+        if(!albums || albums.length === 0) return( <TextoError>No se encontro ninguna canción o artista</TextoError>);
 
         return (
             <>
                 {
                     albums.map((c) => (
-                            <SongResults
-                                key={c.idAlbum}
-                                album={c}
-                                imagen={c.strAlbumThumb || imagen}
-                                setMostrarResultados={setMostrarResultados}
-                            />
-                    ))   
+                        <SongResults
+                            key={c.idAlbum}
+                            album={c}
+                            imagen={c.strAlbumThumb || imagen}
+                            setMostrarResultados={setMostrarResultados}
+                        />
+                    ))
                 }
             </>
         )

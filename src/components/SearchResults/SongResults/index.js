@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addSong } from "../../../redux/libraryActions";
+import { addSong } from "../../../redux/librarySlice";
+
 
 const ConatinerSong = styled.div`
     width: 200px;
@@ -65,7 +66,7 @@ const SongResults = ( {imagen, album, setMostrarResultados} ) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const playlist = useSelector(state => state);
+    const playlist = useSelector((state) => state.library);
 
     const existe = () => {
         if (playlist.find(c => c.idAlbum === album.idAlbum)) {

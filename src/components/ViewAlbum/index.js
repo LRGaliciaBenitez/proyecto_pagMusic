@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useFetchAlbum from "../../Hooks/useFetchAlbum";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchViewalbum } from "../../redux/viewalbumSlice";
 
 const ConatinerViewAlbum = styled.div`
     width: 100%;
@@ -58,27 +59,35 @@ const ViewAlbum = () => {
 
     const { idAlbum } = useParams();
 
-    const { album,error,cargando } = useFetchAlbum(idAlbum);
+    const dispatch = useDispatch();
+
+    const { results, loading, error } = useSelector((state) => state.viewAlbum);
+
+    const album = results[0];
+
+    useEffect(() => {
+        dispatch(fetchViewalbum(idAlbum))
+    }, [idAlbum, dispatch]);
 
     const renderInformacion = () => {
-        if(cargando) return(<p className="cargError">Cargando...</p>);
-        if(error) return(<p className="cargError">{error.message}</p>);
-        
+        if(loading) return(<p className="cargError">Cargando...</p>);
+        if(error) return(<p className="cargError">{error}</p>);
+        if(!album) return null;
+
         return (
-            <ConatinerViewAlbum>
-                <AlbumIMG src={album.strAlbumThumb} alt={album.strArtist}/>
-                <ContainerAlbum1>
-                    <TextAlbum>{album.strAlbum}</TextAlbum>
-                    <TextAlbum>Artista: {album.strArtist}</TextAlbum>
-                    <TextAlbum>Año de álbum: {album.intYearReleased}</TextAlbum>
-                    <TextAlbum>Género del álbum: {album.strStyle}</TextAlbum>
-                </ContainerAlbum1>
-                <ContainerDescripcion>
-                    <p>{album.strDescriptionEN ? album.strDescriptionEN : "No hay descripción del album"}</p>
-                </ContainerDescripcion>
-            </ConatinerViewAlbum>
-        )
-        
+             <ConatinerViewAlbum>
+                 <AlbumIMG src={album.strAlbumThumb} alt={album.strArtist}/>
+                 <ContainerAlbum1>
+                     <TextAlbum>{album.strAlbum}</TextAlbum>
+                     <TextAlbum>Artista: {album.strArtist}</TextAlbum>
+                     <TextAlbum>Año de álbum: {album.intYearReleased}</TextAlbum>
+                     <TextAlbum>Género del álbum: {album.strStyle}</TextAlbum>
+                 </ContainerAlbum1>
+                 <ContainerDescripcion>
+                     <p>{album.strDescriptionEN ? album.strDescriptionEN : "No hay descripción del album"}</p>
+                 </ContainerDescripcion>
+             </ConatinerViewAlbum>
+         )
     }
 
     return (

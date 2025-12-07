@@ -39,7 +39,7 @@ const ContainerSongs = styled.div`
 
 
 const Library = () => {
-    const playlist = useSelector(state => state);
+    const playlist = useSelector((state) => state.library);
 
     return(
         <ContainerLibrary>

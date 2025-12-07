@@ -1,7 +1,15 @@
-import {createStore} from 'redux';
-import libraryReducer from './libraryReducer';
+import { configureStore } from "@reduxjs/toolkit";
+import libraryReducer from "./librarySlice";
+import albumsReducer from "./searchSlice";
+import viewAlbumReducer from "./viewalbumSlice";
 
-const store = createStore(libraryReducer);
+const store = configureStore({
+    reducer: {
+        library: libraryReducer,
+        search: albumsReducer,
+        viewAlbum: viewAlbumReducer,
+    }
+})
+
 
 export default store;
-

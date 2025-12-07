@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./components/HEADER/header";
 import ContainerSongs from "./components/song_components/container_songs";
 import SearchResults from "./components/SearchResults/index";
@@ -10,26 +10,6 @@ const App = () => {
 
   const [busqueda, setBusqueda] = useState("");
   const [mostrarResultados, setMostrarResultados] = useState(false);
-  // const [playlist, setPlaylist] = useState([]);
-
-  // const agregarAlbum = (album) => {
-  //   setPlaylist(prev => {
-    
-  //     const existe = prev.some(c => c.idAlbum === album.idAlbum);
-
-  //     if (existe) {
-  //       alert(`La canción ${album.strAlbum} ya es parte de tu Library`);
-  //       return prev;
-  //     } else {
-  //       alert(`La canción ${album.strAlbum} ha sido agregada a tu Library`);
-  //       return [...prev, album];
-  //     }
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   console.log(`Se axtualizo la biblioteca: ${playlist}`);
-  // }, [playlist]);
 
   function MainPage() {
     return (
@@ -66,7 +46,6 @@ const App = () => {
               busqueda={busqueda} 
               mostrar={mostrarResultados} 
               setMostrarResultados={setMostrarResultados}
-              // agregarAlbum={agregarAlbum}
               />
               <ViewAlbum />
             </>
