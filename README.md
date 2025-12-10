@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# 🎧 Proyecto — Página de Música
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web conectada a una API musical que permite buscar artistas, consultar sus álbumes y obtener información detallada de cada uno.  
+Además, permite guardar álbumes en una biblioteca personal como favoritos.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧰 Tecnologías
 
-### `npm start`
+- HTML  
+- CSS  
+- React
+- Redux
+- JSX
+- AXIOS
+- Styled components
+- API externa de música (theaudiodb)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Cómo empezar / Usar localmente
 
-### `npm test`
+1. Clona este repositorio  
+   ```bash
+   git clone https://github.com/LRGaliciaBenitez/proyecto_pagMusic.git
+2. Instala las dependencias:
+   npm install
+3. Inicia el servidor de desarrollo:
+   npm run dev
+4. Abre la aplicación en tu navegador:
+   👉 http://localhost:5173/ (Vite)
+   ó
+   👉 http://localhost:3000/ (Create React App)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📁 Estructura del proyecto
 
-### `npm run build`
+📦public
+ ┣ 📜index.html
+ ┣ 📜manifest.json
+ ┗ 📜robots.txt
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📜abbey-road-the-beatles-1969.jpg
+ ┃ ┣ 📜album2.jpeg
+ ┃ ┣ 📜album3.jpg
+ ┃ ┣ 📜album4.jpg
+ ┃ ┗ 📜imagen_album.jpeg
+ ┣ 📂components
+ ┃ ┣ 📂HEADER
+ ┃ ┃ ┗ 📜header.js
+ ┃ ┣ 📂Library
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂SearchResults
+ ┃ ┃ ┣ 📂SongResults
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂song_components
+ ┃ ┃ ┣ 📜container_songs.js
+ ┃ ┃ ┗ 📜song.js
+ ┃ ┗ 📂ViewAlbum
+ ┃ ┃ ┗ 📜index.js
+ ┣ 📂redux
+ ┃ ┣ 📜librarySlice.js
+ ┃ ┣ 📜searchSlice.js
+ ┃ ┣ 📜store.js
+ ┃ ┗ 📜viewalbumSlice.js
+ ┣ 📂styles
+ ┃ ┣ 📜GlobalStyles.js
+ ┃ ┗ 📜theme.js
+ ┣ 📜App.js
+ ┗ 📜index.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 💡 Qué hace el proyecto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ -🔍 Buscar artistas usando la API de TheAudioDB.
 
-### `npm run eject`
+ -💿 Mostrar todos los álbumes existentes del artista seleccionado.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ -⭐ Guardar álbumes como favoritos mediante Redux (biblioteca local).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ -📘 Ver detalles del álbum, incluyendo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    * portada
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    * fecha
 
-## Learn More
+    * número de canciones
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    * descripción (si existe en la API)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    * metadatos adicionales
 
-### Code Splitting
+ -⚡ Consumo de API con Axios.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ -🎨 Estilos modernos con Styled Components.
 
-### Analyzing the Bundle Size
+ -📱 Diseño responsivo.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🧪 Posibles mejoras / Próximos pasos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ -Reproductor de previews o audios.
 
-### Advanced Configuration
+ -Página dedicada al artista con biografía completa.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+ -Filtro por año, género o popularidad.
 
-### Deployment
+ -Integrar autenticación para sincronizar favoritos en la nube.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+ -Animaciones mejoradas (Framer Motion).
 
-### `npm run build` fails to minify
+ -Paginación o lazy loading en álbumes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+📄 Licencia & Créditos
+
+Este proyecto es de uso libre.
+
+Desarrollado por Luis Galicia.
+Si deseas aportar mejoras, puedes hacer fork o enviar un pull-request.
