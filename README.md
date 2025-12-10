@@ -35,39 +35,73 @@ Además, permite guardar álbumes en una biblioteca personal como favoritos.
 ## 📁 Estructura del proyecto
 
 📦public
+
  ┣ 📜index.html
+ 
  ┣ 📜manifest.json
+ 
  ┗ 📜robots.txt
+ 
 📦src
+
  ┣ 📂assets
+ 
  ┃ ┣ 📜abbey-road-the-beatles-1969.jpg
+ 
  ┃ ┣ 📜album2.jpeg
+ 
  ┃ ┣ 📜album3.jpg
+ 
  ┃ ┣ 📜album4.jpg
+ 
  ┃ ┗ 📜imagen_album.jpeg
+ 
  ┣ 📂components
+ 
  ┃ ┣ 📂HEADER
+ 
  ┃ ┃ ┗ 📜header.js
+ 
  ┃ ┣ 📂Library
+ 
  ┃ ┃ ┗ 📜index.js
+ 
  ┃ ┣ 📂SearchResults
+ 
  ┃ ┃ ┣ 📂SongResults
+ 
  ┃ ┃ ┃ ┗ 📜index.js
+ 
  ┃ ┃ ┗ 📜index.js
+ 
  ┃ ┣ 📂song_components
+ 
  ┃ ┃ ┣ 📜container_songs.js
+ 
  ┃ ┃ ┗ 📜song.js
+ 
  ┃ ┗ 📂ViewAlbum
+ 
  ┃ ┃ ┗ 📜index.js
+ 
  ┣ 📂redux
+ 
  ┃ ┣ 📜librarySlice.js
+ 
  ┃ ┣ 📜searchSlice.js
+ 
  ┃ ┣ 📜store.js
+ 
  ┃ ┗ 📜viewalbumSlice.js
+ 
  ┣ 📂styles
+ 
  ┃ ┣ 📜GlobalStyles.js
+ 
  ┃ ┗ 📜theme.js
+ 
  ┣ 📜App.js
+ 
  ┗ 📜index.js
 
 ---
