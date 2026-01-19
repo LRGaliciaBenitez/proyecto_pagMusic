@@ -1,3 +1,120 @@
+// import SongResults from "./SongResults/index";
+// import imagen from "../../assets/album4.jpg";
+// import styled, { css } from "styled-components";
+// import { useEffect } from "react";
+// import { fetchAlbums } from "../../redux/searchSlice";
+// import { useDispatch, useSelector } from "react-redux";
+
+// const SearchResultsWrapper = styled.div`
+//     width: 100%;
+//     position: absolute;
+//     transform: translateX(-100%);
+//     opacity: ${({mostrar}) => (mostrar ? "1" : "0")};
+//     transform: ${({mostrar}) => (mostrar ? "translateX(0)" : "translateX(-100%)")};
+//     transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+//     background-color: white;
+//     min-height: 100vh;
+//     z-index: 1000;
+//     padding: 20px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: start;
+//     align-items:center;
+// `;
+
+// const Icon = styled.i`
+//     align-self: flex-end;
+//     font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+//     cursor: pointer;
+
+//     &:hover {
+//         color: red;
+//     }
+// `;
+
+// const H2 = styled.h2`
+//     font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+//     margin-bottom: 20px;
+// `;
+
+// const ContainerInformacion = styled.div`
+//     width: 100%;
+//     ${({albums}) => 
+//     albums.length > 0
+//         ? css`
+//             display: grid;
+//             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+//             gap: 20px;
+//             justify-items: center;
+//         ` 
+//         : css`
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: center;
+//             align-items: center;
+//         `
+//     };
+// `;
+
+// const TextoError = styled.p`
+//     color: red;
+//     font-size: clamp(1rem, 2.5vw, 1.5rem);
+//     text-align: center;
+//     margin-top: 20px;
+//     font-weight: bold;
+// `;
+
+
+
+// const SearchResults = ( { busqueda, mostrar, setMostrarResultados} ) => {
+    
+//     const dispatch = useDispatch();
+
+//     const { results: albums, loading, error } = useSelector((state) => state.search);
+
+//     useEffect(() => {
+//         if(busqueda) {
+//             dispatch(fetchAlbums(busqueda));
+//         }
+//     }, [busqueda, dispatch]);
+
+//     const renderInformacion = () => {
+//         if(loading) return( <TextoError>Cargando...</TextoError>);
+//         if(error) return( <TextoError>Error: ${error.message}</TextoError>);
+//         if(!albums || albums.length === 0) return( <TextoError>No se encontro ninguna canción o artista</TextoError>);
+
+//         return (
+//             <>
+//                 {
+//                     albums.map((c) => (
+//                         <SongResults
+//                             key={c.idAlbum}
+//                             album={c}
+//                             imagen={c.strAlbumThumb || imagen}
+//                             setMostrarResultados={setMostrarResultados}
+//                         />
+//                     ))
+//                 }
+//             </>
+//         )
+//     }
+
+//     return (
+//         <SearchResultsWrapper mostrar={mostrar}>
+//             <Icon
+//             className="bi bi-x-lg"
+//             onClick={() => setMostrarResultados(false)}
+//             ></Icon>
+//             <H2>Resultados de la busqueda</H2>
+//             <ContainerInformacion albums={albums}>
+//                 {renderInformacion()}
+//             </ContainerInformacion>
+//         </SearchResultsWrapper>
+//     )
+// }
+
+// export default SearchResults;
+
 import SongResults from "./SongResults/index";
 import imagen from "../../assets/album4.jpg";
 import styled, { css } from "styled-components";
@@ -6,111 +123,108 @@ import { fetchAlbums } from "../../redux/searchSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const SearchResultsWrapper = styled.div`
-    width: 100%;
-    position: absolute;
-    transform: translateX(-100%);
-    opacity: ${({mostrar}) => (mostrar ? "1" : "0")};
-    transform: ${({mostrar}) => (mostrar ? "translateX(0)" : "translateX(-100%)")};
-    transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    background-color: white;
-    min-height: 100vh;
-    z-index: 1000;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items:center;
+  width: 100%;
+  position: absolute;
+  opacity: ${({ $mostrar }) => ($mostrar ? "1" : "0")};
+  transform: ${({ $mostrar }) =>
+    $mostrar ? "translateX(0)" : "translateX(-100%)"};
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  background-color: white;
+  min-height: 100vh;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Icon = styled.i`
-    align-self: flex-end;
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-    cursor: pointer;
+  align-self: flex-end;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  cursor: pointer;
 
-    &:hover {
-        color: red;
-    }
+  &:hover {
+    color: red;
+  }
 `;
 
 const H2 = styled.h2`
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-    margin-bottom: 20px;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  margin-bottom: 20px;
 `;
 
 const ContainerInformacion = styled.div`
-    width: 100%;
-    ${({albums}) => 
+  width: 100%;
+  ${({ albums }) =>
     albums.length > 0
-        ? css`
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            justify-items: center;
-        ` 
-        : css`
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+      ? css`
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+          justify-items: center;
         `
-    };
+      : css`
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
 `;
 
 const TextoError = styled.p`
-    color: red;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
+  color: red;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
 `;
 
+const SearchResults = ({ busqueda, mostrar, setMostrarResultados }) => {
+  const dispatch = useDispatch();
 
+  const {
+    results: albums = [],
+    loading = false,
+    error = null,
+  } = useSelector((state) => state.search || {});
 
-const SearchResults = ( { busqueda, mostrar, setMostrarResultados} ) => {
-    
-    const dispatch = useDispatch();
-
-    const { results: albums, loading, error } = useSelector((state) => state.search);
-
-    useEffect(() => {
-        if(busqueda) {
-            dispatch(fetchAlbums(busqueda));
-        }
-    }, [busqueda, dispatch]);
-
-    const renderInformacion = () => {
-        if(loading) return( <TextoError>Cargando...</TextoError>);
-        if(error) return( <TextoError>Error: ${error.message}</TextoError>);
-        if(!albums || albums.length === 0) return( <TextoError>No se encontro ninguna canción o artista</TextoError>);
-
-        return (
-            <>
-                {
-                    albums.map((c) => (
-                        <SongResults
-                            key={c.idAlbum}
-                            album={c}
-                            imagen={c.strAlbumThumb || imagen}
-                            setMostrarResultados={setMostrarResultados}
-                        />
-                    ))
-                }
-            </>
-        )
+  useEffect(() => {
+    if (busqueda) {
+      dispatch(fetchAlbums(busqueda));
     }
+  }, [busqueda, dispatch]);
 
-    return (
-        <SearchResultsWrapper mostrar={mostrar}>
-            <Icon
-            className="bi bi-x-lg"
-            onClick={() => setMostrarResultados(false)}
-            ></Icon>
-            <H2>Resultados de la busqueda</H2>
-            <ContainerInformacion albums={albums}>
-                {renderInformacion()}
-            </ContainerInformacion>
-        </SearchResultsWrapper>
-    )
-}
+  const renderInformacion = () => {
+    if (loading) return <TextoError>Cargando...</TextoError>;
+    if (error) return <TextoError>Error: {error}</TextoError>;
+    if (albums.length === 0)
+      return (
+        <TextoError>
+          No se encontro ninguna canción o artista
+        </TextoError>
+      );
+
+    return albums.map((album) => (
+      <SongResults
+        key={album.idAlbum}
+        album={album}
+        imagen={album.strAlbumThumb || imagen}
+        setMostrarResultados={setMostrarResultados}
+      />
+    ));
+  };
+
+  return (
+    <SearchResultsWrapper $mostrar={mostrar}>
+      <Icon
+        className="bi bi-x-lg"
+        onClick={() => setMostrarResultados(false)}
+      />
+      <H2>Resultados de la busqueda</H2>
+      <ContainerInformacion albums={albums}>
+        {renderInformacion()}
+      </ContainerInformacion>
+    </SearchResultsWrapper>
+  );
+};
 
 export default SearchResults;

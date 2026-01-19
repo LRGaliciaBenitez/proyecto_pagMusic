@@ -96,6 +96,7 @@ const Header = ( { setBusqueda, setMostrarResultados, busqueda } ) => {
                 type="text" 
                 name="inputSearch" 
                 id="inputSearch"
+                aria-label="Buscar album"
                 onChange={(e) => setBusqueda(e.target.value)}
                 onKeyDown={handleKeyEnter}
                 />

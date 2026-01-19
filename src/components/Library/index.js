@@ -48,6 +48,7 @@ const Library = () => {
                 { playlist.length > 0 ? (
                    playlist.map(c => (
                         <Song 
+                        key={c.idAlbum}
                         imagen={c.strAlbumThumb || Imagen}
                         name={c.strAlbum}
                         id={c.idAlbum}
